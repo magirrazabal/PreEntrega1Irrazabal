@@ -1,0 +1,41 @@
+
+.menuNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: solid #5C7457;
+    
+}
+
+.menuItems {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+
+}
+
+.menuItems li {
+    display: flex;
+    margin: 2px;
+    padding: 10px;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    justify-content: start;
+    height: 100px;
+    width: 100px;
+}
+.carrito {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    padding: 10px;
+    align-items: center;
+}
+
+.carrito img {
+    height: 30px;
+    width: 30px;
+}

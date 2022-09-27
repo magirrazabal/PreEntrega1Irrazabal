@@ -1,0 +1,10 @@
+.bodyPag {
+    display: flex;
+    background-color: #C1BCAC;
+    height: 50vh;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
