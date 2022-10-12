@@ -5,7 +5,7 @@ export const CartWidget = ()=> {
         <div className="carrito">
         <img src={carrito} alt="carrito" />
 
-        {<span>5</span> }
+        {<span>1</span> }
         </div>
     )
 }

@@ -16,11 +16,14 @@
 
 .menuItems li {
     display: flex;
-    margin: 2px;
     padding: 10px;
-    align-items: center;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #C1BCAC; 
 }
-
+.menuItems li:hover{
+    color: #EFD0CA;
+}
 .logo {
     display: flex;
     justify-content: start;
@@ -38,4 +41,12 @@
 .carrito img {
     height: 30px;
     width: 30px;
+}
+
+.activePag {
+font-weight: bold;
+}
+
+.sleepingPag {
+font-weight: lighter;
 }

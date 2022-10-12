@@ -1,0 +1,36 @@
+.detailCont {
+margin: 10px;
+display:flex;
+justify-content: center;
+flex-direction: column;
+}
+
+.detailTitle {
+    color: #5C7457;
+    font-style: oblique;
+}
+
+.detailPic {
+    border: solid 5px #EFD0CA;
+    width: 300px;
+    height: 400px;
+    margin: 5px;
+}
+
+.detailSub {
+    align-self: center;   
+    color: #C1BCAC;
+    border-bottom: dotted 5px #5C7457;
+    width: fit-content;
+    padding: 5px;
+
+
+}
+
+.detailText {
+    align-self: center;    
+    width: 600px;
+    background-color: rgba(239, 208, 202, 0.2);
+    color: #5C7457;
+    font-weight: 450px;
+}

@@ -1,7 +1,7 @@
 .bodyPag {
     display: flex;
-    background-color: #C1BCAC;
-    height: 50vh;
+    background-color: white;
+    height: auto;
     width: 100%;
     text-align: center;
     align-items: center;
