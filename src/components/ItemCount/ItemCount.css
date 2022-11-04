@@ -1,5 +1,21 @@
 .botones{
-    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100px;
+    align-items:center;
+   
     padding: 5px;
     font-weight: bolder;
+}
+.botonesSuma{
+    display: inline-flex;
+}
+.countResult {
+    width: 20px;
+    height: 15px;
+
+}
+.botonAgregar{
+width:80px ;
 }

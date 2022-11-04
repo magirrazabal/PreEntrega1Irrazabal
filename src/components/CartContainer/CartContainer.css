@@ -1,0 +1,81 @@
+.cartBody {
+    display:flex;
+    display: grid;
+    padding: 70px;
+   
+}
+.cartCard{
+    background-color: rgba(193, 188, 172, 0.15);
+    border: #5C7457 solid 5px;
+    margin: 2px;
+    padding: 5px;
+}
+.cartPic {
+    height: 150px;
+    width: 75px;
+    border: solid 2px #EFD0CA;
+    margin-top: 15px;
+    margin-bottom: 2px;
+}
+h3 {
+        color: #5C7457;
+        font-style: oblique;
+        padding-bottom: 3px;
+    }
+h2 {
+    color: #5C7457;
+    
+}
+.emptyGif {
+    height: 150px;
+    width: 75px;
+}
+
+.cartInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.binIcon {
+    height: 13px;
+    width: 13px;
+    padding: 0;
+   
+}
+.cartText {
+    background-color: rgba(239, 208, 202, 0.25);
+    border-radius: 12%;
+    padding: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.finalPrice{
+    margin: 15px;
+    width: fit-content;
+    justify-self: center;
+}
+.cartForm {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    justify-content: stretch;
+}
+label {
+    margin: 5px;
+    padding: 1px;
+    color: #5C7457;
+    
+}
+input{
+    border: none;
+    border-bottom: #EFD0CA solid 2px;
+    margin: 2px;
+    padding: 2px;
+}
+.carritoBottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+    
+}

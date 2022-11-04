@@ -14,7 +14,9 @@ export const NavBar = ()=>{
                 <NavLink className={({isActive})=> isActive === true ? "activePag" : "sleepingPag"} to="/category/academico"><li>Académicos</li></NavLink>
                 <NavLink className={({isActive})=> isActive === true ? "activePag" : "sleepingPag"} to="/category/infantiles"><li>Infantiles</li></NavLink>
             </ul>
+            <Link to='/cart'>
         <CartWidget/>
+        </Link>
         </nav>
     )
 }
