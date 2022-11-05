@@ -72,6 +72,9 @@ input{
     margin: 2px;
     padding: 2px;
 }
+input:focus {
+    background-color:  rgba(239, 208, 202, 0.25);
+  }
 .carritoBottom {
     display: flex;
     flex-direction: column;

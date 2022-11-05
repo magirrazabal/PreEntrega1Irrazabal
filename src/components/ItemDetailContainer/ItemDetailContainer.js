@@ -1,14 +1,14 @@
-import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { baseDatos } from "../../utils/firebase";
-import loadingGif from "../../assets/loading.gif";
 import "./ItemDetailContainer.css";
-
+import { baseDatos } from "../../utils/firebase";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"
+import { doc, getDoc } from "firebase/firestore";
+import loadingGif from "../../assets/loading.gif";
 import { ItemDetail } from "../ItemDetail/ItemDetail";
 
 export const ItemDetailContainer = () => {
     const { id } = useParams();
+
 
     const [itemDetail, setItemDetail] = useState([]);
 

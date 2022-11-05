@@ -1,22 +1,25 @@
-import { useContext, useEffect, useState } from "react"
-import { CartContext } from "../../context/CartContext"
 import "./CartContainer.css"
+import Swal from "sweetalert2"
+import { baseDatos } from "../../utils/firebase"
+import { CartContext } from "../../context/CartContext"
+import { useContext, useState } from "react"
+import { collection, addDoc } from "firebase/firestore"
+import { Link } from "react-router-dom"
 import bin from "../../assets/bin.png"
 import empty from "../../assets/empty.gif"
-import { baseDatos } from "../../utils/firebase"
-import { collection, addDoc, getDocs, getDoc, query, doc } from "firebase/firestore"
-import { Link } from "react-router-dom"
-import Swal from "sweetalert2"
+import loadingGif from "../../assets/loading.gif";
 
 
 export const CartContainer = () => {
     const value = useContext(CartContext);
     const { productosCarrito, getTotalPrice, removeItem, clearCart } = value;
-
+    const [loader, setLoader] = useState(false)
     const [compraID, setCompraID] = useState("");
+
 
     const sendOrder = (evt) => {
         evt.preventDefault();
+        setLoader(true)
         const purchase = {
             buyer: {
                 buyerName: evt.target[0].value,
@@ -28,63 +31,72 @@ export const CartContainer = () => {
         }
         const queryRef = collection(baseDatos, "orders");
 
-        addDoc(queryRef, purchase).then((resultado) => {
-            console.log("resultado", resultado.id);
-            setCompraID(resultado.id)
-        })
+        addDoc(queryRef, purchase)
+            .then((resultado) => {
+                setCompraID(resultado.id)
 
-        const purchaseAlert = () => {
-            Swal.fire({
-                icon: 'success',
-                title: '¡Gracias por tu compra!',
-                html: `<p>Tu número de orden es ${compraID}</p>`,
             })
-        }
-        console.log(compraID);
+            .catch((error) => console.log(error))
+            .finally(() => setLoader(false), clearCart())
 
-        clearCart();
-        purchaseAlert();
+
+    }
+    const purchaseAlert = () => {
+        Swal.fire({
+            icon: 'success',
+            iconColor: '#5C7457',
+            title: '¡Gracias por tu compra!',
+            html: `<p>El código de tu orden es <b>${compraID}<b></p>`,
+            confirmButtonColor: '#EFD0CA',
+            confirmButtonText: 'Seguir navegando'
+        }).then(function () {
+            window.location = "/";
+        });
     }
 
     return (
-        <div className="cartBody">
-            {
-                productosCarrito.map((producto) => (
-                    <div className="cartCard">
-                        <img className="cartPic" src={producto.imagen}></img>
-                        <h3>{producto.title}</h3>
-                        <div className="cartInfo">
+        <>
+            {loader ? <img className="loadingImg" src={loadingGif} alt="loading imagen" /> : !compraID
+                ? <div className="cartBody">
+                    {
+                        productosCarrito.map((producto) => (
+                            <>
+                            <div className="cartCard">
+                                <img className="cartPic" src={producto.imagen} alt="portada producto"></img>
+                                <h3>{producto.title}</h3>
+                                <div className="cartInfo">
+                                    <p className="cartText">Precio ${producto.price}</p>
+                                    <p className="cartText">Cantidad {producto.quantity}</p>
+                                    <p className="cartText">Total producto ${producto.quantityPrice}</p>
+                                    <button onClick={() => removeItem(producto.id)} ><img className="binIcon" src={bin}></img></button>
+                                </div>
+                                </div>
+                                <div className="carritoBottom">
+                                    <p className="cartText finalPrice">Precio total ${getTotalPrice()}</p>
+                                    <button onClick={() => clearCart()}>Vaciar carrito</button>
+                                </div>
+                        </>
+                        ))
+                    }
 
-                            <p className="cartText">Precio ${producto.price}</p>
-                            <p className="cartText">Cantidad {producto.quantity}</p>
-                            <p className="cartText">Total producto ${producto.quantityPrice}</p>
-                            <button onClick={() => removeItem(producto.id)} ><img className="binIcon" src={bin}></img></button>
-                        </div>
-                        <div className="carritoBottom">
-                            <p className="cartText finalPrice">Precio total ${getTotalPrice()}</p>
-                            <button onClick={() => clearCart()}>Vaciar carrito</button>
-                        </div>
-                    </div>
-
-                ))
-            }
-
-            {productosCarrito.length > 0 ? (<div className="cartForm">
-                <form onSubmit={sendOrder}>
-                    <label>Nombre: </label>
-                    <input type="text" placeholder=" "></input>
-                    <label>Teléfono: </label>
-                    <input type="tel" placeholder=" "></input>
-                    <label>Email: </label>
-                    <input type="email" placeholder=""></input>
-                    <button type="submit" >Enviar orden</button>
-                </form>
-            </div>) :
-                <div>
-                    <img className="emptyGif" src={empty}></img>
-                    <h2>No  se han agregado productos</h2>
-                    <Link to="/"><button> ⇐ Inicio </button></Link>
-                </div>}
-        </div>
+                    {productosCarrito.length > 0 ? (<div className="cartForm">
+                        <form onSubmit={sendOrder}>
+                            <label>Nombre: </label>
+                            <input type="text"></input>
+                            <label>Teléfono: </label>
+                            <input type="tel" maxLength="10"></input>
+                            <label>Email: </label>
+                            <input type="email"></input>
+                            <button type="submit" >Enviar orden</button>
+                        </form>
+                    </div>) :
+                        <div>
+                            <img className="emptyGif" alt="imagen carrito vacio" src={empty}></img>
+                            <h2>No  se han agregado productos</h2>
+                            <Link to="/"><button> ⇐ Inicio </button></Link>
+                        </div>}
+                </div>
+                : purchaseAlert()}
+        </>
     )
 }

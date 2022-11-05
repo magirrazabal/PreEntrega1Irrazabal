@@ -1,13 +1,13 @@
 import './ItemListContainer.css';
-
+import { baseDatos } from '../../utils/firebase';
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { ItemList } from '../ItemList/ItemList';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { baseDatos } from '../../utils/firebase';
+
+
 
 export const ItemListContainer = () => {
-
 
     const { categoryId } = useParams();
 
@@ -22,22 +22,20 @@ export const ItemListContainer = () => {
             const docs = results.map(doc => {
                 return {
                     ...doc.data(),
-                    id:doc.id
+                    id: doc.id
                 }
             });
             setProductos(docs);
         });
     }, [categoryId])
 
+    return (
+        <>
+            <div className="bodyPag">
+                <ItemList items={productos} />
+            </div>
 
 
-        return (
-            <>
-                <div className="bodyPag">
-                    <ItemList items={productos} />
-                </div>
-
-
-            </>
-        )
-    }
+        </>
+    )
+}

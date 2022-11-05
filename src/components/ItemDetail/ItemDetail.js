@@ -1,7 +1,7 @@
 import "./ItemDetail.css"
-import { ItemCount } from '../ItemCount/ItemCount';
-import { useState, useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { useContext } from "react";
+import { ItemCount } from '../ItemCount/ItemCount';
 
 
 export const ItemDetail = ({ item }) => {
@@ -10,16 +10,13 @@ export const ItemDetail = ({ item }) => {
     const addProduct = (quantity) => {
         agregarProducto(item, quantity);
     }
-
-
-
-  
+    
     return (
         <>
             <div>
                 <h1 className="detailTitle">{item.title}</h1>
                 <p className="detailTitle">{item.author}</p>
-                <img className="detailPic" src={item.imagen}></img>
+                <img className="detailPic" alt="detalle imagen" src={item.imagen}></img>
                 <div className="detailCont">
                     <h4 className="detailSub">Precio</h4>
                     <p className="detailText">$ {item.price}</p>
