@@ -13,15 +13,17 @@
     list-style: none;
 
 }
-
-.menuItems li {
+.navItems{
     display: flex;
+}
+.navItems li {
+
     padding: 10px;
     margin-top: 30px;
     text-decoration: none;
     color: #C1BCAC; 
 }
-.menuItems li:hover{
+.navItems li:hover{
     color: #EFD0CA;
 }
 .logo {

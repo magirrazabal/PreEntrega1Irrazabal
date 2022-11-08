@@ -13,13 +13,14 @@ import loadingGif from "../../assets/loading.gif";
 export const CartContainer = () => {
     const value = useContext(CartContext);
     const { productosCarrito, getTotalPrice, removeItem, clearCart } = value;
-    const [loader, setLoader] = useState(false)
+    const [loader, setLoader] = useState(false);
     const [compraID, setCompraID] = useState("");
-
-
+    
+    
     const sendOrder = (evt) => {
+        setLoader(false);
         evt.preventDefault();
-        setLoader(true)
+        
         const purchase = {
             buyer: {
                 buyerName: evt.target[0].value,
@@ -37,9 +38,7 @@ export const CartContainer = () => {
 
             })
             .catch((error) => console.log(error))
-            .finally(() => setLoader(false), clearCart())
-
-
+            .finally(() => clearCart())
     }
     const purchaseAlert = () => {
         Swal.fire({

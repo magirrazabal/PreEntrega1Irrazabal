@@ -4,6 +4,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { ItemList } from '../ItemList/ItemList';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import loadingGif from "../../assets/loading.gif";
 
 
 
@@ -11,6 +12,7 @@ export const ItemListContainer = () => {
 
     const { categoryId } = useParams();
 
+    const [loading, setLoading] = useState(true);
     const [productos, setProductos] = useState([]);
 
     useEffect(() => {
@@ -25,17 +27,19 @@ export const ItemListContainer = () => {
                     id: doc.id
                 }
             });
+            setLoading(false);
             setProductos(docs);
         });
     }, [categoryId])
 
     return (
         <>
+        {loading === true ? (<img className="loadingImg" src={loadingGif} alt="loading" />) :
             <div className="bodyPag">
-                <ItemList items={productos} />
+                 <ItemList items={productos} />
             </div>
 
-
+    }
         </>
     )
 }

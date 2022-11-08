@@ -46,6 +46,7 @@ export const CustomProvider = ({ children }) => {
     }
     const clearCart = () => {
         setProductosCarrito([]);
+        
     }
 
     return (
